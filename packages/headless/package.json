@@ -1,0 +1,86 @@
+{
+  "name": "vats",
+  "version": "1.0.0",
+  "description": "Vats Editor - Notion-style WYSIWYG editor built with Tiptap and Tailwind CSS",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "build": "tsup",
+    "lint": "biome lint ./src",
+    "format": "biome format ./src "
+  },
+  "sideEffects": false,
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.3.0",
+    "@tiptap/core": "^3.27.1",
+    "@tiptap/extension-bubble-menu": "^3.27.1",
+    "@tiptap/extension-character-count": "^3.27.1",
+    "@tiptap/extension-code-block-lowlight": "^3.27.1",
+    "@tiptap/extension-color": "^3.27.1",
+    "@tiptap/extension-highlight": "^3.27.1",
+    "@tiptap/extension-horizontal-rule": "^3.27.1",
+    "@tiptap/extension-image": "^3.27.1",
+    "@tiptap/extension-link": "^3.27.1",
+    "@tiptap/extension-placeholder": "^3.27.1",
+    "@tiptap/extension-task-item": "^3.27.1",
+    "@tiptap/extension-task-list": "^3.27.1",
+    "@tiptap/extension-text-style": "^3.27.1",
+    "@tiptap/extension-underline": "^3.27.1",
+    "@tiptap/extension-youtube": "^3.27.1",
+    "@tiptap/markdown": "^3.27.1",
+    "@tiptap/pm": "^3.27.1",
+    "@tiptap/react": "^3.27.1",
+    "@tiptap/starter-kit": "^3.27.1",
+    "@tiptap/suggestion": "^3.27.1",
+    "@types/node": "^22.20.0",
+    "cmdk": "^1.1.1",
+    "jotai": "^2.20.1",
+    "katex": "^0.16.47",
+    "react-markdown": "^9.1.0",
+    "react-moveable": "^0.56.0",
+    "react-tweet": "^3.3.1",
+    "tippy.js": "^6.3.7",
+    "tiptap-extension-global-drag-handle": "^0.1.18",
+    "tiptap-markdown": "^0.9.0",
+    "tunnel-rat": "^0.1.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/katex": "^0.16.8",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "18.2.19",
+    "tsconfig": "workspace:*",
+    "tsup": "^8.5.1",
+    "typescript": "^5.7.3"
+  },
+  "author": "Shrey Vats",
+  "homepage": "https://github.com/Shreyvats01/vats-editor",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shreyvats01/vats-editor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Shreyvats01/vats-editor/issues"
+  },
+  "keywords": [
+    "vats",
+    "vats-editor",
+    "editor",
+    "wysiwyg",
+    "tiptap",
+    "markdown",
+    "nextjs",
+    "react"
+  ]
+}
