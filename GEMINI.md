@@ -1,6 +1,6 @@
-# Vats Editor — Agent & Developer Workflow Guide
+# Vats Editor: Agent & Developer Workflow Guide
 
-This document contains development standards, git commit instructions, automated verification gates, and monorepo architectural rules for **Vats Editor**.
+This document contains development standards, git commit instructions, automated verification gates, documentation protocols, and monorepo architectural rules for **Vats Editor**.
 
 ---
 
@@ -19,7 +19,11 @@ vats-editor/
 │   └── tsconfig/      # Shared TypeScript configuration
 ├── apps/
 │   └── web/           # Next.js 15 App Router demo ('vats-next-app')
-├── .gemini/skills/    # Local git playbook & workflow skills
+├── docs/              # In-repo developer guides and API references
+├── docs/decisions/    # Architecture Decision Records (ADRs)
+├── wiki/              # GitHub Wiki source pages
+├── scripts/           # Automation scripts (sync-wiki.sh)
+├── .gemini/skills/    # Local AI agent workflow skills
 └── GEMINI.md          # Development & Git commit protocol
 ```
 
@@ -58,6 +62,7 @@ Every commit must follow the [Conventional Commits](https://www.conventionalcomm
 - `plugins`: ProseMirror plugins (`upload`, etc.).
 - `ui`: UI selector components and toolbars.
 - `styles`: CSS / Tailwind styling.
+- `docs`: Project documentation and wiki files.
 - `release`: Package versioning and publishing.
 - `repo`: Monorepo-wide configuration.
 
@@ -109,8 +114,43 @@ pnpm build
 
 ---
 
-## 6. Local Skills
+## 6. Documentation & Wiki Maintenance Protocol
 
-Local git skills are available in `.gemini/skills/`:
-- `git-push-playbook`: Pre-push decision rubric and emergency rollback protocols.
-- `git-workflow-and-versioning`: Branching models, atomic commit sizing, and SemVer release management.
+All documentation in Vats Editor must stay synchronized with the codebase. Follow the detailed standards in [`.gemini/skills/documentation-and-wiki-maintenance/SKILL.md`](file:///home/shrey/Projects/novel/.gemini/skills/documentation-and-wiki-maintenance/SKILL.md).
+
+### 6.1 When to Update Documentation
+
+Update documentation in `docs/`, `docs/decisions/`, or `wiki/` whenever:
+- Adding or modifying public component props (`EditorRoot`, `EditorContent`, `EditorBubble`, `EditorCommand`, `ImageResizer`).
+- Introducing or altering Tiptap extensions and node schemas (`Mathematics`, `Twitter`, `UpdatedImage`, `UploadImagesPlugin`).
+- Making significant architectural decisions that require an ADR (`docs/decisions/ADR-00X-*.md`).
+- Adding or modifying Tailwind CSS configuration, ProseMirror CSS classes, or theme variables (`docs/styling.md`, `wiki/Styling-and-Themes.md`).
+- Introducing breaking changes that require migration guidance (`docs/migration-guide.md`).
+
+### 6.2 When NOT to Update Documentation
+
+Do **NOT** update documentation for:
+- Internal implementation refactors with zero change to public types or component props.
+- Formatting, linting, or dependency patch upgrades.
+- Temporary debugging experiments or unfinished draft branches.
+- Self-explanatory internal helper functions (use concise TypeScript code comments instead).
+
+### 6.3 Writing & Humanizer Standards
+
+Every document in `docs/`, `docs/decisions/`, and `wiki/` must follow these rules:
+1. **Zero em dashes (`—`) or en dashes (`–`)**: Replace with commas, periods, colons, or parentheses.
+2. **Zero promotional AI vocabulary**: Do not use words like *delve*, *pivotal*, *testament*, *tapestry*, *vibrant*, *fostering*, or *underscores*.
+3. **Accurate code snippets**: All code examples must reflect verified TypeScript exports from `"vats"`.
+4. **Wiki Synchronization**: Push wiki changes using `./scripts/sync-wiki.sh` after updating `wiki/`.
+
+---
+
+## 7. Local Agent Skills
+
+The following specialized local skills are available in `.gemini/skills/`:
+
+| Skill | Path | Description |
+| :--- | :--- | :--- |
+| **`documentation-and-wiki-maintenance`** | [`.gemini/skills/documentation-and-wiki-maintenance/SKILL.md`](file:///home/shrey/Projects/novel/.gemini/skills/documentation-and-wiki-maintenance/SKILL.md) | Authoring, updating, and syncing docs, ADRs, and GitHub Wiki with decision rubrics and quality gates. |
+| **`git-push-playbook`** | [`.gemini/skills/git-push-playbook/SKILL.md`](file:///home/shrey/Projects/novel/.gemini/skills/git-push-playbook/SKILL.md) | Pre-push decision rubric, atomic commit standards, and emergency rollback protocols. |
+| **`git-workflow-and-versioning`** | [`.gemini/skills/git-workflow-and-versioning/SKILL.md`](file:///home/shrey/Projects/novel/.gemini/skills/git-workflow-and-versioning/SKILL.md) | Branching models, atomic commit sizing, and SemVer release management. |
