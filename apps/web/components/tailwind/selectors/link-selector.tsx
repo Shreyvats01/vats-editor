@@ -3,7 +3,7 @@ import { PopoverContent } from "@/components/tailwind/ui/popover";
 import { cn } from "@/lib/utils";
 import { Popover, PopoverTrigger } from "@radix-ui/react-popover";
 import { Check, Trash } from "lucide-react";
-import { useEditor } from "vats";
+import { useEditor } from "@vats-editor/core";
 import { useEffect, useRef } from "react";
 
 export function isValidUrl(url: string) {

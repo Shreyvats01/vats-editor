@@ -10,16 +10,16 @@ Install the core package `vats` using your preferred package manager.
 
 ```bash
 # Using pnpm (recommended)
-pnpm add vats
+pnpm add @vats-editor/core
 
 # Using npm
-npm install vats
+npm install @vats-editor/core
 
 # Using yarn
-yarn add vats
+yarn add @vats-editor/core
 
 # Using bun
-bun add vats
+bun add @vats-editor/core
 ```
 
 ### Peer Dependencies
@@ -51,7 +51,7 @@ import {
   EditorContent,
   StarterKit,
   Placeholder,
-} from "vats";
+} from "@vats-editor/core";
 import { useState } from "react";
 
 const extensions = [
@@ -125,7 +125,7 @@ import {
   handleImagePaste,
   type JSONContent,
   type EditorInstance,
-} from "vats";
+} from "@vats-editor/core";
 import { useState, useEffect } from "react";
 
 const extensions = [
@@ -247,7 +247,7 @@ Vats Editor provides helpers for reading and transforming content:
 Example saving to an API:
 
 ```tsx
-import { getAllContent, type EditorInstance } from "vats";
+import { getAllContent, type EditorInstance } from "@vats-editor/core";
 
 async function saveDocument(editor: EditorInstance) {
   const payload = {

@@ -15,7 +15,7 @@ Uninstall legacy `novel` and install `vats`:
 pnpm remove novel
 
 # Install Vats Editor
-pnpm add vats
+pnpm add @vats-editor/core
 ```
 
 Update import statements across your codebase:
@@ -29,7 +29,7 @@ Update import statements across your codebase:
 +   EditorCommand,
 +   EditorCommandList,
 +   EditorCommandItem,
-+ } from "vats";
++ } from "@vats-editor/core";
 ```
 
 ### 2. Multi-Store Isolation & Component Hierarchy
@@ -65,7 +65,7 @@ import {
   Placeholder,
   TiptapLink,
   UpdatedImage,
-} from "vats";
+} from "@vats-editor/core";
 
 const extensions = [
   StarterKit,
@@ -135,7 +135,7 @@ import {
   createImageUpload,
   handleImageDrop,
   handleImagePaste,
-} from "vats";
+} from "@vats-editor/core";
 
 const uploadFn = createImageUpload({
   onUpload: async (file: File) => {
@@ -190,7 +190,7 @@ import {
   EditorBubble,
   EditorBubbleItem,
   StarterKit,
-} from "vats";
+} from "@vats-editor/core";
 
 export function VatsTiptap() {
   return (
@@ -225,7 +225,7 @@ export function VatsTiptap() {
 Any custom extension built with `@tiptap/core` works out of the box in Vats Editor. Pass your custom extensions directly into the `extensions` array prop of `EditorContent`:
 
 ```tsx
-import { EditorRoot, EditorContent, StarterKit } from "vats";
+import { EditorRoot, EditorContent, StarterKit } from "@vats-editor/core";
 import { MyCustomExtension } from "./my-custom-extension";
 
 export function CustomEditor() {

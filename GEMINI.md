@@ -11,7 +11,7 @@ This document contains development standards, git commit instructions, automated
 ```text
 vats-editor/
 ├── packages/
-│   ├── headless/      # Core npm package ('vats')
+│   ├── headless/      # Core npm package ('@vats-editor/core')
 │   │   ├── src/components/   # EditorRoot, EditorContent, EditorBubble, EditorCommand
 │   │   ├── src/extensions/   # Mathematics, Twitter, UpdatedImage, CustomKeymap
 │   │   ├── src/plugins/      # UploadImagesPlugin

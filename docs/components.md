@@ -17,7 +17,7 @@ import {
   EditorCommandItem,
   EditorCommandEmpty,
   ImageResizer,
-} from "vats";
+} from "@vats-editor/core";
 ```
 
 ---
@@ -36,7 +36,7 @@ import {
 ### Example
 
 ```tsx
-import { EditorRoot, EditorContent } from "vats";
+import { EditorRoot, EditorContent } from "@vats-editor/core";
 
 export function EditorWrapper() {
   return (
@@ -67,7 +67,7 @@ export const useEditorStore: () => ReturnType<typeof createStore>;
 ### Example
 
 ```tsx
-import { useEditorStore, queryAtom } from "vats";
+import { useEditorStore, queryAtom } from "@vats-editor/core";
 import { useAtomValue } from "jotai";
 
 export function CustomSearchDebugger() {
@@ -103,7 +103,7 @@ export function CustomSearchDebugger() {
 ### Example
 
 ```tsx
-import { EditorContent, type EditorInstance, StarterKit, ImageResizer } from "vats";
+import { EditorContent, type EditorInstance, StarterKit, ImageResizer } from "@vats-editor/core";
 
 export function ContentArea() {
   return (
@@ -153,7 +153,7 @@ export function ContentArea() {
 ### Example
 
 ```tsx
-import { EditorBubble, EditorBubbleItem } from "vats";
+import { EditorBubble, EditorBubbleItem } from "@vats-editor/core";
 
 export function FloatingToolbar() {
   return (
@@ -214,7 +214,7 @@ import {
   EditorCommandList,
   EditorCommandItem,
   EditorCommandEmpty,
-} from "vats";
+} from "@vats-editor/core";
 
 export function SlashMenu() {
   return (
@@ -273,7 +273,7 @@ When an image node is selected (`.ProseMirror-selectednode`), the component disp
 Place `ImageResizer` in the `slotAfter` prop of `EditorContent`:
 
 ```tsx
-import { EditorContent, ImageResizer, UpdatedImage } from "vats";
+import { EditorContent, ImageResizer, UpdatedImage } from "@vats-editor/core";
 
 export function ResizableEditor() {
   return (

@@ -1,4 +1,4 @@
-import { createImageUpload } from "vats";
+import { createImageUpload } from "@vats-editor/core";
 import { toast } from "sonner";
 
 const onUpload = (file: File) => {

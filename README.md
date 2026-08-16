@@ -51,13 +51,13 @@ Install the core headless package:
 
 ```bash
 # Using pnpm
-pnpm add vats
+pnpm add @vats-editor/core
 
 # Using npm
-npm install vats
+npm install @vats-editor/core
 
 # Using yarn
-yarn add vats
+yarn add @vats-editor/core
 ```
 
 ---
@@ -80,7 +80,7 @@ import {
   createSuggestionItems,
   renderItems,
   Command,
-} from "vats";
+} from "@vats-editor/core";
 
 const defaultExtensions = [
   StarterKit,

@@ -8,16 +8,16 @@ Install the core package using your preferred package manager:
 
 ```bash
 # Using pnpm (recommended)
-pnpm add vats
+pnpm add @vats-editor/core
 
 # Using npm
-npm install vats
+npm install @vats-editor/core
 
 # Using yarn
-yarn add vats
+yarn add @vats-editor/core
 
 # Using bun
-bun add vats
+bun add @vats-editor/core
 ```
 
 ### Peer and Companion Dependencies
@@ -51,7 +51,7 @@ import {
   TiptapLink,
   UpdatedImage,
   type JSONContent,
-} from "vats";
+} from "@vats-editor/core";
 
 const defaultExtensions = [
   StarterKit,
@@ -131,7 +131,7 @@ import {
   handleCommandNavigation,
   type EditorInstance,
   type JSONContent,
-} from "vats";
+} from "@vats-editor/core";
 
 const extensions = [
   StarterKit,

@@ -57,6 +57,9 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.10
         version: 0.5.20(tailwindcss@3.4.19(yaml@2.9.0))
+      '@vats-editor/core':
+        specifier: workspace:^
+        version: link:../../packages/headless
       '@vercel/analytics':
         specifier: ^1.2.2
         version: 1.6.1(next@15.1.4(@opentelemetry/api@1.9.1)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react@18.2.0)(svelte@5.56.4)(vue@3.5.38(typescript@5.9.3))
@@ -114,9 +117,6 @@ importers:
       use-debounce:
         specifier: ^10.0.0
         version: 10.1.1(react@18.2.0)
-      vats:
-        specifier: workspace:^
-        version: link:../../packages/headless
     devDependencies:
       '@biomejs/biome':
         specifier: ^1.7.2

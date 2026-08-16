@@ -28,7 +28,7 @@ import {
   type SuggestionItem,
   type TwitterOptions,
   type MathematicsOptions,
-} from "vats";
+} from "@vats-editor/core";
 ```
 
 ---
@@ -40,7 +40,7 @@ import {
 ### Example Configuration
 
 ```tsx
-import { StarterKit } from "vats";
+import { StarterKit } from "@vats-editor/core";
 
 export const customStarterKit = StarterKit.configure({
   bulletList: {
@@ -74,7 +74,7 @@ In Vats Editor, `Placeholder` is pre-configured to display dynamic prompts based
 ### Example Configuration
 
 ```tsx
-import { Placeholder } from "vats";
+import { Placeholder } from "@vats-editor/core";
 
 export const customPlaceholder = Placeholder.configure({
   placeholder: ({ node }) => {
@@ -98,7 +98,7 @@ export const customPlaceholder = Placeholder.configure({
 ### Example Configuration
 
 ```tsx
-import { TiptapLink, TiptapUnderline } from "vats";
+import { TiptapLink, TiptapUnderline } from "@vats-editor/core";
 
 export const linkExtension = TiptapLink.configure({
   openOnClick: false,
@@ -129,7 +129,7 @@ import {
   createImageUpload,
   handleImageDrop,
   handleImagePaste,
-} from "vats";
+} from "@vats-editor/core";
 
 // Define the upload function targeting your server API or cloud bucket
 const uploadFn = createImageUpload({
@@ -208,7 +208,7 @@ import "katex/dist/katex.min.css";
 ### Extension Configuration
 
 ```tsx
-import { Mathematics } from "vats";
+import { Mathematics } from "@vats-editor/core";
 
 export const mathExtension = Mathematics.configure({
   HTMLAttributes: {
@@ -239,7 +239,7 @@ The `Twitter` extension renders embedded tweets using `react-tweet`.
 ### Example Configuration
 
 ```tsx
-import { Twitter } from "vats";
+import { Twitter } from "@vats-editor/core";
 
 export const twitterExtension = Twitter.configure({
   addPasteHandler: true,
@@ -259,7 +259,7 @@ The `Youtube` extension renders responsive YouTube video players via iframes.
 ### Example Configuration
 
 ```tsx
-import { Youtube } from "vats";
+import { Youtube } from "@vats-editor/core";
 
 export const youtubeExtension = Youtube.configure({
   inline: false,
@@ -278,7 +278,7 @@ export const youtubeExtension = Youtube.configure({
 For example, pressing `Mod-a` (`Ctrl+A` or `Cmd+A`) first selects text within the current block boundary (such as a paragraph or heading). Pressing `Mod-a` a second time expands the selection to the entire document.
 
 ```tsx
-import { CustomKeymap } from "vats";
+import { CustomKeymap } from "@vats-editor/core";
 
 export const keymapExtension = CustomKeymap;
 ```
@@ -290,7 +290,7 @@ export const keymapExtension = CustomKeymap;
 `GlobalDragHandle` adds a draggable handle beside content blocks for reordering paragraphs, headings, and lists.
 
 ```tsx
-import { GlobalDragHandle } from "vats";
+import { GlobalDragHandle } from "@vats-editor/core";
 
 export const dragHandleExtension = GlobalDragHandle.configure({
   dragHandleWidth: 20,
@@ -307,7 +307,7 @@ export const dragHandleExtension = GlobalDragHandle.configure({
 ### Example Configuration
 
 ```tsx
-import { CodeBlockLowlight } from "vats";
+import { CodeBlockLowlight } from "@vats-editor/core";
 import { common, createLowlight } from "lowlight";
 
 const lowlight = createLowlight(common);
@@ -338,7 +338,7 @@ import {
   renderItems,
   createSuggestionItems,
   type SuggestionItem,
-} from "vats";
+} from "@vats-editor/core";
 
 export const suggestionItems = createSuggestionItems([
   {

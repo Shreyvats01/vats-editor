@@ -15,7 +15,7 @@ import {
   handleCommandNavigation,
   handleImageDrop,
   handleImagePaste,
-} from "vats";
+} from "@vats-editor/core";
 import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { defaultExtensions } from "./extensions";

@@ -34,27 +34,29 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          registry-url: "https://registry.npmjs.org"
           cache: "pnpm"
 
       - name: 🧩 Install Dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: 🏗️ Build Workspace Packages
+        run: pnpm build
 
       - name: 🔍 Typecheck & Lint
         run: |
           pnpm typecheck
           pnpm lint
 
-      - name: 🏗️ Build Workspace Packages
-        run: pnpm build
-
-      - name: 📣 Create Release PR or Publish to npm
+      - name: 📣 Create Release PR or Publish to npm (OIDC Provenance)
         id: changesets
         uses: changesets/action@v1
         with:
           title: "chore(release): version packages 🦋"
-          publish: pnpm publish:packages
+          publish: ./scripts/publish-packages.sh
           version: pnpm version:packages
           commit: "chore(release): version packages 🦋 [skip ci]"
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN || github.token }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

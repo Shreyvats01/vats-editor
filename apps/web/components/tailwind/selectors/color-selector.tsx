@@ -1,5 +1,5 @@
 import { Check, ChevronDown } from "lucide-react";
-import { EditorBubbleItem, useEditor } from "vats";
+import { EditorBubbleItem, useEditor } from "@vats-editor/core";
 
 import { Button } from "@/components/tailwind/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/tailwind/ui/popover";

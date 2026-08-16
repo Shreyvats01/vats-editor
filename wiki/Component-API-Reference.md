@@ -11,7 +11,7 @@ This document provides a comprehensive API reference for all React components, c
 The top-level container that sets up the Jotai state store and tunnel context for an editor instance. Every editor must be wrapped in an `EditorRoot`.
 
 ```tsx
-import { EditorRoot, type EditorRootProps } from "vats";
+import { EditorRoot, type EditorRootProps } from "@vats-editor/core";
 ```
 
 #### Props
@@ -36,7 +36,7 @@ import { EditorRoot, type EditorRootProps } from "vats";
 The core rendering container for the Tiptap editor view. It wraps Tiptap's `EditorProvider` and binds the active Jotai store to the editor instance.
 
 ```tsx
-import { EditorContent, type EditorContentProps } from "vats";
+import { EditorContent, type EditorContentProps } from "@vats-editor/core";
 ```
 
 #### Props
@@ -91,7 +91,7 @@ import { EditorContent, type EditorContentProps } from "vats";
 A floating bubble menu rendered above selected text. It automatically handles positioning, visibility rules, and node selection checks.
 
 ```tsx
-import { EditorBubble, type EditorBubbleProps } from "vats";
+import { EditorBubble, type EditorBubbleProps } from "@vats-editor/core";
 ```
 
 #### Props
@@ -119,7 +119,7 @@ import { EditorBubble, type EditorBubbleProps } from "vats";
 A convenience wrapper for items inside the bubble menu.
 
 ```tsx
-import { EditorBubbleItem } from "vats";
+import { EditorBubbleItem } from "@vats-editor/core";
 ```
 
 #### Props
@@ -142,7 +142,7 @@ import {
   EditorCommandList,
   EditorCommandItem,
   EditorCommandEmpty,
-} from "vats";
+} from "@vats-editor/core";
 ```
 
 #### Components
@@ -189,7 +189,7 @@ import {
 A React overlay component that renders interactive drag handles on currently selected image nodes. Place this inside `slotAfter` of `EditorContent`.
 
 ```tsx
-import { ImageResizer } from "vats";
+import { ImageResizer } from "@vats-editor/core";
 
 <EditorContent slotAfter={<ImageResizer />} />
 ```
@@ -203,7 +203,7 @@ import { ImageResizer } from "vats";
 Retrieves the isolated Jotai store assigned to the nearest `EditorRoot`.
 
 ```tsx
-import { useEditorStore } from "vats";
+import { useEditorStore } from "@vats-editor/core";
 
 const store = useEditorStore();
 ```
@@ -213,7 +213,7 @@ const store = useEditorStore();
 The React Context object holding the Jotai store reference.
 
 ```tsx
-import { EditorStoreContext } from "vats";
+import { EditorStoreContext } from "@vats-editor/core";
 import { useContext } from "react";
 
 const store = useContext(EditorStoreContext);

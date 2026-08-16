@@ -64,7 +64,7 @@ export const defaultEditorContent = {
     {
       type: "codeBlock",
       attrs: { language: null },
-      content: [{ type: "text", text: "pnpm add vats" }],
+      content: [{ type: "text", text: "pnpm add @vats-editor/core" }],
     },
     {
       type: "heading",
@@ -77,7 +77,7 @@ export const defaultEditorContent = {
       content: [
         {
           type: "text",
-          text: 'import { EditorRoot, EditorContent } from "vats";\n\nexport default function App() {\n  return (\n    <EditorRoot>\n      <EditorContent />\n    </EditorRoot>\n  )\n}',
+          text: 'import { EditorRoot, EditorContent } from "@vats-editor/core";\n\nexport default function App() {\n  return (\n    <EditorRoot>\n      <EditorContent />\n    </EditorRoot>\n  )\n}',
         },
       ],
     },
@@ -298,7 +298,7 @@ export const defaultEditorContent = {
                     {
                       type: "link",
                       attrs: {
-                        href: "https://www.npmjs.com/package/vats",
+                        href: "https://www.npmjs.com/package/@vats-editor/core",
                         target: "_blank",
                       },
                     },

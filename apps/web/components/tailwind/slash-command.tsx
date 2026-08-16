@@ -13,7 +13,7 @@ import {
   Twitter,
   Youtube,
 } from "lucide-react";
-import { Command, createSuggestionItems, renderItems } from "vats";
+import { Command, createSuggestionItems, renderItems } from "@vats-editor/core";
 import { uploadFn } from "./image-upload";
 
 export const suggestionItems = createSuggestionItems([

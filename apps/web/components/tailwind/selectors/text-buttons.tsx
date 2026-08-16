@@ -1,7 +1,7 @@
 import { Button } from "@/components/tailwind/ui/button";
 import { cn } from "@/lib/utils";
 import { BoldIcon, CodeIcon, ItalicIcon, StrikethroughIcon, UnderlineIcon } from "lucide-react";
-import { EditorBubbleItem, useEditor } from "vats";
+import { EditorBubbleItem, useEditor } from "@vats-editor/core";
 import type { SelectorItem } from "./node-selector";
 
 export const TextButtons = () => {

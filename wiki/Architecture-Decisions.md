@@ -11,7 +11,7 @@ Vats Editor follows a modular architecture separating core editor headless logic
 ```text
 vats-editor/
 ├── packages/
-│   ├── headless/      # Core headless package ('vats')
+│   ├── headless/      # Core headless package ('@vats-editor/core')
 │   │   ├── src/components/   # React components (EditorRoot, EditorContent, EditorBubble, EditorCommand)
 │   │   ├── src/extensions/   # Tiptap extensions (Mathematics, Twitter, UpdatedImage, CustomKeymap)
 │   │   ├── src/plugins/      # ProseMirror plugins (UploadImagesPlugin)

@@ -19,7 +19,7 @@ import {
   UpdatedImage,
   UploadImagesPlugin,
   Youtube,
-} from "vats";
+} from "@vats-editor/core";
 
 import { cx } from "class-variance-authority";
 import { common, createLowlight } from "lowlight";

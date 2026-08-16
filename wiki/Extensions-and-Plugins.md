@@ -11,7 +11,7 @@ Vats Editor ships with a rich set of built-in Tiptap extensions and ProseMirror 
 Provides essential document structure and inline formatting marks.
 
 ```tsx
-import { StarterKit } from "vats";
+import { StarterKit } from "@vats-editor/core";
 
 const starterKit = StarterKit.configure({
   bulletList: {
@@ -44,7 +44,7 @@ const starterKit = StarterKit.configure({
 Displays dynamic placeholder hints inside empty paragraphs or documents.
 
 ```tsx
-import { Placeholder } from "vats";
+import { Placeholder } from "@vats-editor/core";
 
 const placeholder = Placeholder.configure({
   placeholder: ({ node }) => {
@@ -70,7 +70,7 @@ import {
   type UploadFn,
   handleImageDrop,
   handleImagePaste,
-} from "vats";
+} from "@vats-editor/core";
 
 // Define your custom upload handler
 export const uploadFn: UploadFn = async (file, view, pos) => {
@@ -122,7 +122,7 @@ In your editor props, wire up paste and drop handlers:
 Enables KaTeX formula editing and live mathematical rendering. It supports both inline equations (`$E = mc^2$`) and block formulas (`$$\int_0^\infty e^{-x^2} dx$$`).
 
 ```tsx
-import { Mathematics, type MathematicsOptions } from "vats";
+import { Mathematics, type MathematicsOptions } from "@vats-editor/core";
 
 const mathematics = Mathematics.configure({
   HTMLAttributes: {
@@ -142,7 +142,7 @@ const mathematics = Mathematics.configure({
 Renders interactive Twitter / X tweet embed cards from pasted tweet URLs.
 
 ```tsx
-import { Twitter, type TwitterOptions } from "vats";
+import { Twitter, type TwitterOptions } from "@vats-editor/core";
 
 const twitter = Twitter.configure({
   HTMLAttributes: {
@@ -159,7 +159,7 @@ const twitter = Twitter.configure({
 Embeds responsive YouTube videos directly in the editor.
 
 ```tsx
-import { Youtube } from "vats";
+import { Youtube } from "@vats-editor/core";
 
 const youtube = Youtube.configure({
   HTMLAttributes: {
@@ -178,7 +178,7 @@ const youtube = Youtube.configure({
 Integrates Lowlight syntax highlighting with highlight.js language grammars.
 
 ```tsx
-import { CodeBlockLowlight } from "vats";
+import { CodeBlockLowlight } from "@vats-editor/core";
 import { common, createLowlight } from "lowlight";
 
 const codeBlock = CodeBlockLowlight.configure({
@@ -197,7 +197,7 @@ const codeBlock = CodeBlockLowlight.configure({
 - `CustomKeymap`: Configures tab indentation in lists, enter key splitting, and keyboard shortcut overrides.
 
 ```tsx
-import { GlobalDragHandle, CustomKeymap } from "vats";
+import { GlobalDragHandle, CustomKeymap } from "@vats-editor/core";
 
 const extensions = [
   GlobalDragHandle.configure({
@@ -215,7 +215,7 @@ const extensions = [
 Provides bidirectional Markdown conversion using `tiptap-markdown`. It handles paste conversion and allows extracting the full document as Markdown with `getAllContent(editor)`.
 
 ```tsx
-import { MarkdownExtension } from "vats";
+import { MarkdownExtension } from "@vats-editor/core";
 
 const markdown = MarkdownExtension.configure({
   html: true,
@@ -282,7 +282,7 @@ export const CalloutNode = Node.create({
 Use `createSuggestionItems` to register custom commands in your command palette:
 
 ```tsx
-import { createSuggestionItems, type SuggestionItem } from "vats";
+import { createSuggestionItems, type SuggestionItem } from "@vats-editor/core";
 import { Info } from "lucide-react";
 
 export const customSuggestionItems = createSuggestionItems([

@@ -48,7 +48,7 @@ import {
   Placeholder,
   TiptapLink,
   UpdatedImage,
-} from "vats";
+} from "@vats-editor/core";
 import { useState } from "react";
 
 const extensions = [
