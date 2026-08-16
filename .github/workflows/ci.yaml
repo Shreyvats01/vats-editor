@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   validate:
-    name: 🔍 Typecheck, Lint & Build
+    name: 🔍 Build, Typecheck & Lint
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout Repository
@@ -38,11 +38,11 @@ jobs:
       - name: 🧩 Install Dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: 🏗️ Production Build
+        run: pnpm build
+
       - name: 🔬 Typecheck Packages
         run: pnpm typecheck
 
       - name: 🧹 Lint with Biome
         run: pnpm lint
-
-      - name: 🏗️ Production Build
-        run: pnpm build
