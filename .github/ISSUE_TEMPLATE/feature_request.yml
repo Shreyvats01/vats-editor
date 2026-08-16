@@ -1,28 +1,64 @@
-# This template is heavily inspired by the Next.js's template:
-# See here: https://github.com/vercel/next.js/tree/canary/.github/ISSUE_TEMPLATE
-
-name: 🛠 Feature Request
-description: Create a feature request for the core packages
+name: "✨ Feature Request"
+description: "Suggest an idea, extension, or improvement for Vats Editor."
 title: "feat: "
-labels: ["✨ enhancement"]
+labels: ["enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        Thank you for taking the time to file a feature request. Please fill out this form as completely as possible.
-  - type: textarea
+        Thank you for submitting a feature request for **Vats Editor**!
+
+  - type: dropdown
+    id: area
     attributes:
-      label: Describe the feature you'd like to request
-      description: Please describe the feature as clear and concise as possible. Remember to add context as to why you believe this feature is needed.
+      label: Feature Area
+      description: What part of the project would this feature affect?
+      options:
+        - "Core Headless Package (packages/headless)"
+        - "New Tiptap Extension / Node"
+        - "Bubble Toolbar / Slash Command Menu"
+        - "Image & Media Pipeline"
+        - "Tailwind & Theme System"
+        - "Markdown / Serialization"
+        - "Web Demo / Documentation"
     validations:
       required: true
+
   - type: textarea
+    id: problem
     attributes:
-      label: Describe the solution you'd like to see
-      description: Please describe the solution you would like to see. Adding example usage is a good way to provide context.
+      label: Problem or Motivation
+      description: Is your feature request related to a problem or limitation? Please describe clearly.
+      placeholder: "I'm always frustrated when [...]"
     validations:
       required: true
+
   - type: textarea
+    id: solution
     attributes:
-      label: Additional information
-      description: Add any other information related to the feature here. If your feature request is related to any issues or discussions, link them here.
+      label: Proposed Solution / API Design
+      description: Describe the solution you would like to see, including code examples or proposed component props if applicable.
+      placeholder: |
+        ```tsx
+        <EditorRoot>
+          <EditorContent extensions={[MyNewExtension]} />
+        </EditorRoot>
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Describe any alternative solutions or features you have considered.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context, references to competitor libraries (e.g. Notion, BlockNote, Lexical), or mockups here.
+    validations:
+      required: false

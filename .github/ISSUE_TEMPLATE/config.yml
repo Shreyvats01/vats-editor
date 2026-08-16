@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/Shreyvats01/vats-editor/discussions
+    about: Ask general questions, get help with integration, or share your projects.
+  - name: 📖 Documentation & Wiki
+    url: https://github.com/Shreyvats01/vats-editor/wiki
+    about: Read our comprehensive guides and API references before filing an issue.

@@ -1,0 +1,40 @@
+name: "📚 Documentation Feedback"
+description: "Report a mistake, typo, outdated snippet, or missing guide in Vats Editor docs or wiki."
+title: "docs: "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping us keep the Vats Editor documentation accurate and helpful!
+
+  - type: dropdown
+    id: location
+    attributes:
+      label: Documentation Location
+      description: Where is the issue located?
+      options:
+        - "docs/ (In-repo documentation)"
+        - "docs/decisions/ (Architecture Decision Records)"
+        - "wiki/ (GitHub Wiki pages)"
+        - "README.md / GEMINI.md"
+        - "TypeScript types / JSDoc comments"
+    validations:
+      required: true
+
+  - type: input
+    id: page-url
+    attributes:
+      label: Page URL or File Path
+      description: The URL or in-repo file path where the documentation issue is present.
+      placeholder: "docs/components.md or https://github.com/Shreyvats01/vats-editor/wiki/Component-API-Reference"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Issue Description & Suggested Fix
+      description: Describe what is incorrect or missing, and suggest the corrected text or code snippet if possible.
+    validations:
+      required: true
