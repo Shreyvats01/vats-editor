@@ -1,6 +1,6 @@
 import {
   CharacterCount,
-  CodeBlockLowlight,
+  CodeBlock,
   Color,
   CustomKeymap,
   GlobalDragHandle,
@@ -19,10 +19,12 @@ import {
   UpdatedImage,
   UploadImagesPlugin,
   Youtube,
+  ReactNodeViewRenderer,
 } from "@vats-editor/core";
 
 import { cx } from "class-variance-authority";
 import { common, createLowlight } from "lowlight";
+import { TailwindCodeBlock } from "./code-block";
 
 //You can overwrite the placeholder with your own configuration
 const placeholder = Placeholder;
@@ -103,9 +105,11 @@ const starterKit = StarterKit.configure({
   gapcursor: false,
 });
 
-const codeBlockLowlight = CodeBlockLowlight.configure({
-  // configure lowlight: common /  all / use highlightJS in case there is a need to specify certain language grammars only
-  // common: covers 37 language grammars which should be good enough in most cases
+const codeBlock = CodeBlock.extend({
+  addNodeView() {
+    return ReactNodeViewRenderer(TailwindCodeBlock);
+  },
+}).configure({
   lowlight: createLowlight(common),
 });
 
@@ -153,7 +157,7 @@ export const defaultExtensions = [
   taskList,
   taskItem,
   horizontalRule,
-  codeBlockLowlight,
+  codeBlock,
   youtube,
   twitter,
   mathematics,

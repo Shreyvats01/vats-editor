@@ -1,4 +1,5 @@
 "use client";
+
 import { defaultEditorContent } from "@/lib/content";
 import {
   EditorBubble,
@@ -16,74 +17,124 @@ import {
   handleImageDrop,
   handleImagePaste,
 } from "@vats-editor/core";
-import { useEffect, useState } from "react";
+import hljs from "highlight.js";
+import { useCallback, useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { defaultExtensions } from "./extensions";
+import { uploadFn } from "./image-upload";
 import { ColorSelector } from "./selectors/color-selector";
 import { LinkSelector } from "./selectors/link-selector";
 import { MathSelector } from "./selectors/math-selector";
 import { NodeSelector } from "./selectors/node-selector";
-import { Separator } from "./ui/separator";
-
-import { uploadFn } from "./image-upload";
 import { TextButtons } from "./selectors/text-buttons";
 import { slashCommand, suggestionItems } from "./slash-command";
-
-const hljs = require("highlight.js");
+import { Separator } from "./ui/separator";
 
 const extensions = [...defaultExtensions, slashCommand];
 
-const TailwindAdvancedEditor = () => {
-  const [initialContent, setInitialContent] = useState<null | JSONContent>(null);
-  const [saveStatus, setSaveStatus] = useState("Saved");
-  const [charsCount, setCharsCount] = useState<number>();
+export interface EditorUpdatePayload {
+  editor: EditorInstance;
+  json: JSONContent;
+  jsonString: string;
+  markdown: string;
+  html: string;
+  words: number;
+  chars: number;
+}
 
+interface TailwindAdvancedEditorProps {
+  initialContent?: JSONContent;
+  editable?: boolean;
+  className?: string;
+  onEditorUpdate?: (payload: EditorUpdatePayload) => void;
+  onSaveStatusChange?: (status: "Saved" | "Saving" | "Unsaved") => void;
+}
+
+export const TailwindAdvancedEditor: React.FC<TailwindAdvancedEditorProps> = ({
+  initialContent,
+  editable = true,
+  className,
+  onEditorUpdate,
+  onSaveStatusChange,
+}) => {
+  const [content, setContent] = useState<JSONContent | null>(null);
   const [openNode, setOpenNode] = useState(false);
   const [openColor, setOpenColor] = useState(false);
   const [openLink, setOpenLink] = useState(false);
 
-  //Apply Codeblock Highlighting on the HTML from editor.getHTML()
-  const highlightCodeblocks = (content: string) => {
-    const doc = new DOMParser().parseFromString(content, "text/html");
-    doc.querySelectorAll("pre code").forEach((el) => {
-      // @ts-ignore
-      // https://highlightjs.readthedocs.io/en/latest/api.html?highlight=highlightElement#highlightelement
-      hljs.highlightElement(el);
-    });
-    return new XMLSerializer().serializeToString(doc);
-  };
+  // Apply Codeblock Highlighting on the HTML from editor.getHTML()
+  const highlightCodeblocks = useCallback((htmlContent: string) => {
+    if (typeof window === "undefined") return htmlContent;
+    try {
+      const doc = new DOMParser().parseFromString(htmlContent, "text/html");
+      doc.querySelectorAll("pre code").forEach((el) => {
+        hljs.highlightElement(el as HTMLElement);
+      });
+      return new XMLSerializer().serializeToString(doc);
+    } catch {
+      return htmlContent;
+    }
+  }, []);
 
   const debouncedUpdates = useDebouncedCallback(async (editor: EditorInstance) => {
     const json = editor.getJSON();
-    setCharsCount(editor.storage.characterCount.words());
-    window.localStorage.setItem("html-content", highlightCodeblocks(editor.getHTML()));
-    window.localStorage.setItem("vats-content", JSON.stringify(json));
-    window.localStorage.setItem("markdown", getAllContent(editor));
-    setSaveStatus("Saved");
-  }, 500);
+    const words = editor.storage.characterCount?.words?.() || 0;
+    const chars = editor.storage.characterCount?.characters?.() || 0;
+    const rawHtml = editor.getHTML();
+    const highlightedHtml = highlightCodeblocks(rawHtml);
+    const markdown = getAllContent(editor);
+    const jsonString = JSON.stringify(json, null, 2);
+
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem("html-content", highlightedHtml);
+      window.localStorage.setItem("vats-content", JSON.stringify(json));
+      window.localStorage.setItem("markdown", markdown);
+    }
+
+    onEditorUpdate?.({
+      editor,
+      json,
+      jsonString,
+      markdown,
+      html: highlightedHtml,
+      words,
+      chars,
+    });
+
+    onSaveStatusChange?.("Saved");
+  }, 400);
 
   useEffect(() => {
-    const content = window.localStorage.getItem("vats-content") || window.localStorage.getItem("novel-content");
-    if (content) setInitialContent(JSON.parse(content));
-    else setInitialContent(defaultEditorContent);
-  }, []);
+    if (initialContent) {
+      setContent(initialContent);
+    } else {
+      const saved =
+        typeof window !== "undefined"
+          ? window.localStorage.getItem("vats-content") || window.localStorage.getItem("novel-content")
+          : null;
+      if (saved) {
+        try {
+          setContent(JSON.parse(saved));
+        } catch {
+          setContent(defaultEditorContent);
+        }
+      } else {
+        setContent(defaultEditorContent);
+      }
+    }
+  }, [initialContent]);
 
-  if (!initialContent) return null;
+  if (!content) return null;
 
   return (
-    <div className="relative w-full max-w-screen-lg">
-      <div className="flex absolute right-5 top-5 z-10 mb-5 gap-2">
-        <div className="rounded-lg bg-accent px-2 py-1 text-sm text-muted-foreground">{saveStatus}</div>
-        <div className={charsCount ? "rounded-lg bg-accent px-2 py-1 text-sm text-muted-foreground" : "hidden"}>
-          {charsCount} Words
-        </div>
-      </div>
+    <div className={`relative w-full ${className || ""}`}>
       <EditorRoot>
         <EditorContent
-          initialContent={initialContent}
+          initialContent={content}
           extensions={extensions}
-          className="relative min-h-[500px] w-full max-w-screen-lg border-muted bg-background sm:mb-[calc(20vh)] sm:rounded-lg sm:border sm:shadow-lg"
+          className="relative min-h-[500px] w-full rounded-xl border border-border/70 bg-card/80 backdrop-blur-md p-6 sm:p-10 shadow-sm transition-all focus-within:shadow-md"
           editorProps={{
+            editable: () => editable,
             handleDOMEvents: {
               keydown: (_view, event) => handleCommandNavigation(event),
             },
@@ -91,50 +142,56 @@ const TailwindAdvancedEditor = () => {
             handleDrop: (view, event, _slice, moved) => handleImageDrop(view, event, moved, uploadFn),
             attributes: {
               class:
-                "prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full",
+                "prose prose-lg dark:prose-invert prose-headings:font-semibold focus:outline-none max-w-full min-h-[400px]",
             },
           }}
           onUpdate={({ editor }) => {
+            onSaveStatusChange?.("Saving");
             debouncedUpdates(editor);
-            setSaveStatus("Unsaved");
           }}
           slotAfter={<ImageResizer />}
         >
-          <EditorCommand className="z-50 h-auto max-h-[330px] overflow-y-auto rounded-md border border-muted bg-background px-1 py-2 shadow-md transition-all">
-            <EditorCommandEmpty className="px-2 text-muted-foreground">No results</EditorCommandEmpty>
-            <EditorCommandList>
-              {suggestionItems.map((item) => (
-                <EditorCommandItem
-                  value={item.title}
-                  onCommand={(val) => item.command(val)}
-                  className="flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm hover:bg-accent aria-selected:bg-accent"
-                  key={item.title}
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-md border border-muted bg-background">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <p className="font-medium">{item.title}</p>
-                    <p className="text-xs text-muted-foreground">{item.description}</p>
-                  </div>
-                </EditorCommandItem>
-              ))}
-            </EditorCommandList>
-          </EditorCommand>
+          {/* Notion-style Slash Command Palette */}
+          {editable && (
+            <EditorCommand className="z-50 h-auto max-h-[330px] overflow-y-auto rounded-lg border border-border/80 bg-background/95 backdrop-blur-md px-1 py-1.5 shadow-xl transition-all">
+              <EditorCommandEmpty className="px-3 py-2 text-xs text-muted-foreground">
+                No matching commands
+              </EditorCommandEmpty>
+              <EditorCommandList>
+                {suggestionItems.map((item) => (
+                  <EditorCommandItem
+                    value={item.title}
+                    onCommand={(val) => item.command(val)}
+                    className="flex w-full items-center space-x-2.5 rounded-md px-2 py-1.5 text-left text-xs hover:bg-accent aria-selected:bg-accent cursor-pointer transition-colors"
+                    key={item.title}
+                  >
+                    <div className="flex h-8 w-8 items-center justify-center rounded-md border border-border/60 bg-muted/50 text-foreground">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <p className="font-medium text-foreground">{item.title}</p>
+                      <p className="text-[11px] text-muted-foreground">{item.description}</p>
+                    </div>
+                  </EditorCommandItem>
+                ))}
+              </EditorCommandList>
+            </EditorCommand>
+          )}
 
-          <EditorBubble
-            className="flex w-fit max-w-[90vw] overflow-hidden rounded-md border border-muted bg-background shadow-xl"
-          >
-            <NodeSelector open={openNode} onOpenChange={setOpenNode} />
-            <Separator orientation="vertical" />
-            <LinkSelector open={openLink} onOpenChange={setOpenLink} />
-            <Separator orientation="vertical" />
-            <MathSelector />
-            <Separator orientation="vertical" />
-            <TextButtons />
-            <Separator orientation="vertical" />
-            <ColorSelector open={openColor} onOpenChange={setOpenColor} />
-          </EditorBubble>
+          {/* Floating Bubble Menu on selection */}
+          {editable && (
+            <EditorBubble className="flex w-fit max-w-[90vw] overflow-hidden rounded-lg border border-border/80 bg-background/95 backdrop-blur-md shadow-2xl p-0.5 animate-in fade-in zoom-in-95 duration-100">
+              <NodeSelector open={openNode} onOpenChange={setOpenNode} />
+              <Separator orientation="vertical" className="h-6 mx-0.5" />
+              <LinkSelector open={openLink} onOpenChange={setOpenLink} />
+              <Separator orientation="vertical" className="h-6 mx-0.5" />
+              <MathSelector />
+              <Separator orientation="vertical" className="h-6 mx-0.5" />
+              <TextButtons />
+              <Separator orientation="vertical" className="h-6 mx-0.5" />
+              <ColorSelector open={openColor} onOpenChange={setOpenColor} />
+            </EditorBubble>
+          )}
         </EditorContent>
       </EditorRoot>
     </div>

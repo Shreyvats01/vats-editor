@@ -1,10 +1,16 @@
 "use client";
 
-import { type Dispatch, type ReactNode, type SetStateAction, createContext } from "react";
-import { ThemeProvider, useTheme } from "next-themes";
-import { Toaster } from "sonner";
-import { Analytics } from "@vercel/analytics/react";
+import { TooltipProvider } from "@/components/tailwind/ui/tooltip";
 import useLocalStorage from "@/hooks/use-local-storage";
+import { Analytics } from "@vercel/analytics/react";
+import { ThemeProvider, useTheme } from "next-themes";
+import {
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+  createContext,
+} from "react";
+import { Toaster } from "sonner";
 
 export const AppContext = createContext<{
   font: string;
@@ -26,16 +32,18 @@ export default function Providers({ children }: { children: ReactNode }) {
 
   return (
     <ThemeProvider attribute="class" enableSystem disableTransitionOnChange defaultTheme="system">
-      <AppContext.Provider
-        value={{
-          font,
-          setFont,
-        }}
-      >
-        <ToasterProvider />
-        {children}
-        <Analytics />
-      </AppContext.Provider>
+      <TooltipProvider delayDuration={200}>
+        <AppContext.Provider
+          value={{
+            font,
+            setFont,
+          }}
+        >
+          <ToasterProvider />
+          {children}
+          <Analytics />
+        </AppContext.Provider>
+      </TooltipProvider>
     </ThemeProvider>
   );
 }

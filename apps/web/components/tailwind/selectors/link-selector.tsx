@@ -1,7 +1,7 @@
 import { Button } from "@/components/tailwind/ui/button";
-import { PopoverContent } from "@/components/tailwind/ui/popover";
+import { Input } from "@/components/tailwind/ui/input";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/tailwind/ui/popover";
 import { cn } from "@/lib/utils";
-import { Popover, PopoverTrigger } from "@radix-ui/react-popover";
 import { Check, Trash } from "lucide-react";
 import { useEditor } from "@vats-editor/core";
 import { useEffect, useRef } from "react";
@@ -56,7 +56,7 @@ export const LinkSelector = ({ open, onOpenChange }: LinkSelectorProps) => {
           </p>
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="start" className="w-60 p-0" sideOffset={10}>
+      <PopoverContent align="start" className="w-60 p-1.5 shadow-xl" sideOffset={10}>
         <form
           onSubmit={(e) => {
             const target = e.currentTarget as HTMLFormElement;
@@ -68,13 +68,13 @@ export const LinkSelector = ({ open, onOpenChange }: LinkSelectorProps) => {
               onOpenChange(false);
             }
           }}
-          className="flex  p-1 "
+          className="flex items-center gap-1"
         >
-          <input
+          <Input
             ref={inputRef}
             type="text"
-            placeholder="Paste a link"
-            className="flex-1 bg-background p-1 text-sm outline-none"
+            placeholder="Paste a link..."
+            className="h-8 text-xs flex-1"
             defaultValue={editor.getAttributes("link").href || ""}
           />
           {editor.getAttributes("link").href ? (
@@ -82,18 +82,18 @@ export const LinkSelector = ({ open, onOpenChange }: LinkSelectorProps) => {
               size="icon"
               variant="outline"
               type="button"
-              className="flex h-8 items-center rounded-sm p-1 text-red-600 transition-all hover:bg-red-100 dark:hover:bg-red-800"
+              className="h-8 w-8 text-destructive hover:bg-destructive/10"
               onClick={() => {
                 editor.chain().focus().unsetLink().run();
-                inputRef.current.value = "";
+                if (inputRef.current) inputRef.current.value = "";
                 onOpenChange(false);
               }}
             >
-              <Trash className="h-4 w-4" />
+              <Trash className="h-3.5 w-3.5" />
             </Button>
           ) : (
-            <Button size="icon" className="h-8">
-              <Check className="h-4 w-4" />
+            <Button size="icon" className="h-8 w-8 shrink-0">
+              <Check className="h-3.5 w-3.5" />
             </Button>
           )}
         </form>

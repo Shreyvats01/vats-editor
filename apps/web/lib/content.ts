@@ -1,10 +1,12 @@
-export const defaultEditorContent = {
+import type { JSONContent } from "@vats-editor/core";
+
+export const defaultEditorContent: JSONContent = {
   type: "doc",
   content: [
     {
       type: "heading",
-      attrs: { level: 2 },
-      content: [{ type: "text", text: "Introducing Vats Editor" }],
+      attrs: { level: 1 },
+      content: [{ type: "text", text: "Vats Editor: Notion-Style WYSIWYG Framework" }],
     },
     {
       type: "paragraph",
@@ -24,7 +26,7 @@ export const defaultEditorContent = {
         },
         {
           type: "text",
-          text: " is a Notion-style WYSIWYG editor built with ",
+          text: " is an open-source, modular rich-text editor framework built with ",
         },
         {
           type: "text",
@@ -37,9 +39,9 @@ export const defaultEditorContent = {
               },
             },
           ],
-          text: "Tiptap",
+          text: "Tiptap 3",
         },
-        { type: "text", text: " and " },
+        { type: "text", text: ", " },
         {
           type: "text",
           marks: [
@@ -53,38 +55,210 @@ export const defaultEditorContent = {
           ],
           text: "Tailwind CSS",
         },
-        { type: "text", text: "." },
+        { type: "text", text: ", and " },
+        {
+          type: "text",
+          marks: [
+            {
+              type: "link",
+              attrs: {
+                href: "https://ui.shadcn.com/",
+                target: "_blank",
+              },
+            },
+          ],
+          text: "shadcn/ui",
+        },
+        { type: "text", text: ". Test all interactive components, node types, math formulas, and code blocks directly in this playground." },
       ],
     },
     {
-      type: "heading",
-      attrs: { level: 3 },
-      content: [{ type: "text", text: "Installation" }],
-    },
-    {
-      type: "codeBlock",
-      attrs: { language: null },
-      content: [{ type: "text", text: "pnpm add @vats-editor/core" }],
-    },
-    {
-      type: "heading",
-      attrs: { level: 3 },
-      content: [{ type: "text", text: "Usage" }],
-    },
-    {
-      type: "codeBlock",
-      attrs: { language: null },
+      type: "blockquote",
       content: [
         {
-          type: "text",
-          text: 'import { EditorRoot, EditorContent } from "@vats-editor/core";\n\nexport default function App() {\n  return (\n    <EditorRoot>\n      <EditorContent />\n    </EditorRoot>\n  )\n}',
+          type: "paragraph",
+          content: [
+            {
+              type: "text",
+              marks: [{ type: "bold" }],
+              text: "Pro Tip: ",
+            },
+            {
+              type: "text",
+              text: "Type ",
+            },
+            {
+              type: "text",
+              marks: [{ type: "code" }],
+              text: "/",
+            },
+            {
+              type: "text",
+              text: " anywhere on an empty line to trigger the Notion-style command palette, or highlight any text to reveal the floating bubble formatting menu.",
+            },
+          ],
         },
       ],
     },
     {
       type: "heading",
-      attrs: { level: 3 },
-      content: [{ type: "text", text: "Features" }],
+      attrs: { level: 2 },
+      content: [{ type: "text", text: "1. Rich Text Formatting & Marks" }],
+    },
+    {
+      type: "paragraph",
+      content: [
+        { type: "text", text: "Every paragraph supports comprehensive inline marks: " },
+        { type: "text", marks: [{ type: "bold" }], text: "Bold" },
+        { type: "text", text: ", " },
+        { type: "text", marks: [{ type: "italic" }], text: "Italic" },
+        { type: "text", text: ", " },
+        { type: "text", marks: [{ type: "underline" }], text: "Underline" },
+        { type: "text", text: ", " },
+        { type: "text", marks: [{ type: "strike" }], text: "Strikethrough" },
+        { type: "text", text: ", inline " },
+        { type: "text", marks: [{ type: "code" }], text: "const editor = useEditor()" },
+        { type: "text", text: ", custom " },
+        {
+          type: "text",
+          marks: [{ type: "textStyle", attrs: { color: "#2563EB" } }],
+          text: "Text Colors",
+        },
+        { type: "text", text: ", and background highlights like " },
+        {
+          type: "text",
+          marks: [{ type: "highlight", attrs: { color: "var(--novel-highlight-yellow)" } }],
+          text: "Yellow Accent",
+        },
+        { type: "text", text: ", " },
+        {
+          type: "text",
+          marks: [{ type: "highlight", attrs: { color: "var(--novel-highlight-purple)" } }],
+          text: "Purple Tone",
+        },
+        { type: "text", text: ", and " },
+        {
+          type: "text",
+          marks: [{ type: "highlight", attrs: { color: "var(--novel-highlight-green)" } }],
+          text: "Emerald Glow",
+        },
+        { type: "text", text: "." },
+      ],
+    },
+    {
+      type: "heading",
+      attrs: { level: 2 },
+      content: [{ type: "text", text: "2. Interactive Task Checklists" }],
+    },
+    {
+      type: "taskList",
+      content: [
+        {
+          type: "taskItem",
+          attrs: { checked: true },
+          content: [
+            {
+              type: "paragraph",
+              content: [
+                {
+                  type: "text",
+                  text: "Multi-editor isolation with scoped Jotai stores per EditorRoot",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "taskItem",
+          attrs: { checked: true },
+          content: [
+            {
+              type: "paragraph",
+              content: [
+                {
+                  type: "text",
+                  text: "Notion-style code block with language switching, copy, and syntax coloring",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "taskItem",
+          attrs: { checked: true },
+          content: [
+            {
+              type: "paragraph",
+              content: [
+                {
+                  type: "text",
+                  text: "Native KaTeX mathematics formula editing and inline LaTeX rendering",
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "taskItem",
+          attrs: { checked: false },
+          content: [
+            {
+              type: "paragraph",
+              content: [
+                {
+                  type: "text",
+                  text: "Toggle Split Inspector mode to view real-time Markdown, JSON AST, and HTML",
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: "heading",
+      attrs: { level: 2 },
+      content: [{ type: "text", text: "3. Notion-Style Code Blocks & Formatting" }],
+    },
+    {
+      type: "paragraph",
+      content: [
+        {
+          type: "text",
+          text: "Hover over the code block to select languages, format code structures, or copy code with 1-click.",
+        },
+      ],
+    },
+    {
+      type: "codeBlock",
+      attrs: { language: "typescript" },
+      content: [
+        {
+          type: "text",
+          text: 'import { EditorRoot, EditorContent, useEditor } from "@vats-editor/core";\nimport "highlight.js/styles/atom-one-dark.css";\nimport "katex/dist/katex.min.css";\n\nexport function DocumentEditor() {\n  const { editor } = useEditor();\n\n  return (\n    <EditorRoot>\n      <EditorContent\n        className="min-h-[400px] border rounded-lg p-6 bg-background"\n        onUpdate={({ editor }) => console.log(editor.getJSON())}\n      />\n    </EditorRoot>\n  );\n}',
+        },
+      ],
+    },
+    {
+      type: "codeBlock",
+      attrs: { language: "python" },
+      content: [
+        {
+          type: "text",
+          text: 'def serialize_document(editor_json: dict) -> str:\n    """Serializes ProseMirror JSON node tree into markdown."""\n    nodes = editor_json.get("content", [])\n    return "\\n\\n".join(node.get("text", "") for node in nodes if "text" in node)',
+        },
+      ],
+    },
+    {
+      type: "heading",
+      attrs: { level: 2 },
+      content: [{ type: "text", text: "4. KaTeX Mathematical Equations" }],
+    },
+    {
+      type: "paragraph",
+      content: [
+        { type: "text", text: "Click any formula below to open the interactive LaTeX formula editor in the bubble menu." },
+      ],
     },
     {
       type: "orderedList",
@@ -95,19 +269,13 @@ export const defaultEditorContent = {
           content: [
             {
               type: "paragraph",
-              content: [{ type: "text", text: "Slash menu & bubble menu" }],
-            },
-          ],
-        },
-        {
-          type: "listItem",
-          content: [
-            {
-              type: "paragraph",
               content: [
+                { type: "text", text: "Einstein Mass-Energy equivalence: " },
                 {
-                  type: "text",
-                  text: "Image uploads (drag & drop / copy & paste, or select from slash menu) ",
+                  type: "math",
+                  attrs: {
+                    latex: "E = mc^2",
+                  },
                 },
               ],
             },
@@ -119,17 +287,14 @@ export const defaultEditorContent = {
             {
               type: "paragraph",
               content: [
+                { type: "text", text: "Time-Dependent Schrödinger Wave Equation: " },
                 {
-                  type: "text",
-                  text: "Add tweets from the command slash menu:",
+                  type: "math",
+                  attrs: {
+                    latex: "i\\hbar \\frac{\\partial}{\\partial t} \\Psi(\\mathbf{r},t) = \\hat{H}\\Psi(\\mathbf{r},t)",
+                  },
                 },
               ],
-            },
-            {
-              type: "twitter",
-              attrs: {
-                src: "https://x.com/elonmusk/status/1800759252224729577",
-              },
             },
           ],
         },
@@ -139,100 +304,29 @@ export const defaultEditorContent = {
             {
               type: "paragraph",
               content: [
+                { type: "text", text: "Fourier Transform formulation: " },
                 {
-                  type: "text",
-                  text: "Mathematical symbols with LaTeX expression:",
+                  type: "math",
+                  attrs: {
+                    latex: "\\hat{f} (\\xi)=\\int_{-\\infty}^{\\infty}f(x)e^{-2\\pi ix\\xi}dx",
+                  },
                 },
               ],
             },
+          ],
+        },
+        {
+          type: "listItem",
+          content: [
             {
-              type: "orderedList",
-              attrs: {
-                tight: true,
-                start: 1,
-              },
+              type: "paragraph",
               content: [
+                { type: "text", text: "2x2 Linear Transformation Matrix: " },
                 {
-                  type: "listItem",
-                  content: [
-                    {
-                      type: "paragraph",
-                      content: [
-                        {
-                          type: "math",
-                          attrs: {
-                            latex: "E = mc^2",
-                          },
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "listItem",
-                  content: [
-                    {
-                      type: "paragraph",
-                      content: [
-                        {
-                          type: "math",
-                          attrs: {
-                            latex: "a^2 = \\sqrt{b^2 + c^2}",
-                          },
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "listItem",
-                  content: [
-                    {
-                      type: "paragraph",
-                      content: [
-                        {
-                          type: "math",
-                          attrs: {
-                            latex:
-                              "\\hat{f} (\\xi)=\\int_{-\\infty}^{\\infty}f(x)e^{-2\\pi ix\\xi}dx",
-                          },
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "listItem",
-                  content: [
-                    {
-                      type: "paragraph",
-                      content: [
-                        {
-                          type: "math",
-                          attrs: {
-                            latex:
-                              "A=\\begin{bmatrix}a&b\\\\c&d \\end{bmatrix}",
-                          },
-                        },
-                      ],
-                    },
-                  ],
-                },
-                {
-                  type: "listItem",
-                  content: [
-                    {
-                      type: "paragraph",
-                      content: [
-                        {
-                          type: "math",
-                          attrs: {
-                            latex: "\\sum_{i=0}^n x_i",
-                          },
-                        },
-                      ],
-                    },
-                  ],
+                  type: "math",
+                  attrs: {
+                    latex: "A=\\begin{bmatrix} a & b \\\\ c & d \\end{bmatrix}, \\quad \\det(A) = ad - bc",
+                  },
                 },
               ],
             },
@@ -241,75 +335,102 @@ export const defaultEditorContent = {
       ],
     },
     {
+      type: "heading",
+      attrs: { level: 2 },
+      content: [{ type: "text", text: "5. Hierarchical Lists & Indentation" }],
+    },
+    {
+      type: "bulletList",
+      content: [
+        {
+          type: "listItem",
+          content: [
+            {
+              type: "paragraph",
+              content: [{ type: "text", text: "First-level bullet point item" }],
+            },
+            {
+              type: "bulletList",
+              content: [
+                {
+                  type: "listItem",
+                  content: [
+                    {
+                      type: "paragraph",
+                      content: [{ type: "text", text: "Nested sub-bullet item (indent with Tab key)" }],
+                    },
+                  ],
+                },
+                {
+                  type: "listItem",
+                  content: [
+                    {
+                      type: "paragraph",
+                      content: [{ type: "text", text: "Second nested sub-bullet item (outdent with Shift-Tab)" }],
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          type: "listItem",
+          content: [
+            {
+              type: "paragraph",
+              content: [{ type: "text", text: "Second top-level item with seamless keyboard navigation" }],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: "heading",
+      attrs: { level: 2 },
+      content: [{ type: "text", text: "6. Interactive Images & Media Embeds" }],
+    },
+    {
       type: "image",
       attrs: {
         src: "https://public.blob.vercel-storage.com/pJrjXbdONOnAeZAZ/banner-2wQk82qTwyVgvlhTW21GIkWgqPGD2C.png",
-        alt: "banner.png",
-        title: "banner.png",
+        alt: "Vats Editor Banner",
+        title: "Vats Editor Banner",
         width: null,
         height: null,
+      },
+    },
+    {
+      type: "paragraph",
+      content: [
+        {
+          type: "text",
+          text: "Social media embeds can be added via the slash menu: ",
+        },
+      ],
+    },
+    {
+      type: "twitter",
+      attrs: {
+        src: "https://x.com/elonmusk/status/1800759252224729577",
       },
     },
     { type: "horizontalRule" },
     {
       type: "heading",
       attrs: { level: 3 },
-      content: [{ type: "text", text: "Learn more" }],
+      content: [{ type: "text", text: "Ready to Integrate?" }],
     },
     {
-      type: "taskList",
+      type: "paragraph",
       content: [
-        {
-          type: "taskItem",
-          attrs: { checked: false },
-          content: [
-            {
-              type: "paragraph",
-              content: [
-                { type: "text", text: "Star us on " },
-                {
-                  type: "text",
-                  marks: [
-                    {
-                      type: "link",
-                      attrs: {
-                        href: "https://github.com/Shreyvats01/vats-editor",
-                        target: "_blank",
-                      },
-                    },
-                  ],
-                  text: "GitHub",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          type: "taskItem",
-          attrs: { checked: false },
-          content: [
-            {
-              type: "paragraph",
-              content: [
-                { type: "text", text: "Install the " },
-                {
-                  type: "text",
-                  marks: [
-                    {
-                      type: "link",
-                      attrs: {
-                        href: "https://www.npmjs.com/package/@vats-editor/core",
-                        target: "_blank",
-                      },
-                    },
-                  ],
-                  text: "NPM package",
-                },
-              ],
-            },
-          ],
-        },
+        { type: "text", text: "Install the package and start building your custom editor in minutes:" },
       ],
+    },
+    {
+      type: "codeBlock",
+      attrs: { language: "bash" },
+      content: [{ type: "text", text: "pnpm add @vats-editor/core" }],
     },
   ],
 };
