@@ -27,7 +27,7 @@ This wiki provides comprehensive reference guides for installation, component AP
 | [Component API Reference](Component-API-Reference) | Detailed API documentation for `EditorRoot`, `EditorContent`, `EditorBubble`, `EditorCommand`, and hooks |
 | [Extensions and Plugins](Extensions-and-Plugins) | Guide to all built-in Tiptap extensions, ProseMirror plugins, and custom extension authoring |
 | [Styling and Themes](Styling-and-Themes) | Tailwind CSS typography configuration, ProseMirror CSS selectors, and custom theme tokens |
-| [Architecture Decisions](Architecture-Decisions) | Architectural decision records summarizing ADR-001 through ADR-004 |
+| [Architecture Decisions](Architecture-Decisions) | Architectural decision records summarizing ADR-001 through ADR-005 |
 
 ---
 

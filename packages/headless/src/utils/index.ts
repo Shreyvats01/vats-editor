@@ -69,3 +69,14 @@ export const getAllContent = (editor: EditorInstance): string => {
   );
 };
 
+// Code formatting utilities
+export {
+  type CodeFormatterFn,
+  formatJson,
+  formatJavaScript,
+  formatHtml,
+  formatCss,
+  formatSql,
+  defaultFormatCode,
+} from "./code-formatter";
+

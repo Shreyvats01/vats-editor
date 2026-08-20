@@ -21,3 +21,4 @@ export {
   EditorCommandTunnelContext,
 } from "./editor-command";
 export { EditorCommandItem, EditorCommandEmpty } from "./editor-command-item";
+export { CodeBlockView, type CodeBlockViewProps } from "./code-block-view";

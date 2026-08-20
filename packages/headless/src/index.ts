@@ -16,12 +16,16 @@ export {
   useEditor,
   type EditorInstance,
   type JSONContent,
+  CodeBlockView,
+  type CodeBlockViewProps,
 } from "./components";
-
 
 // Extensions
 export {
+  CodeBlock,
   CodeBlockLowlight,
+  DEFAULT_LANGUAGES,
+  THEME_PRESETS,
   HorizontalRule,
   ImageResizer,
   InputRule,
@@ -50,6 +54,13 @@ export {
   type SuggestionItem,
   type TwitterOptions,
   type MathematicsOptions,
+  type CodeBlockOptions,
+  type CodeLanguage,
+  type CodeTheme,
+  ReactNodeViewRenderer,
+  NodeViewWrapper,
+  NodeViewContent,
+  type NodeViewProps,
 } from "./extensions";
 
 // Plugins
@@ -68,6 +79,13 @@ export {
   getUrlFromString,
   getPrevText,
   getAllContent,
+  type CodeFormatterFn,
+  formatJson,
+  formatJavaScript,
+  formatHtml,
+  formatCss,
+  formatSql,
+  defaultFormatCode,
 } from "./utils";
 
 // Store and Atoms

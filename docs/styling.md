@@ -282,7 +282,7 @@ ul[data-type="taskList"] li[data-checked="true"] > div > p {
 }
 ```
 
-### 5. Media Embeds & Code Blocks
+### 5. Media Embeds
 
 ```css
 div[data-youtube-video] > iframe {
@@ -291,37 +291,50 @@ div[data-youtube-video] > iframe {
   border-radius: 0.5rem;
   border: 1px solid hsl(var(--border));
 }
+```
 
-pre {
-  background: #111827;
-  border-radius: 0.5rem;
-  color: #f9fafb;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  padding: 0.875rem 1rem;
+### 6. Code Block Themes & Syntax Highlighting
+
+Vats Editor code blocks support lightweight `highlight.js` theme stylesheets as well as customizable CSS variables.
+
+#### Option 1: Import a Lightweight Theme Stylesheet
+
+Import any standard `highlight.js` theme in your root layout or global CSS:
+
+```ts
+// Atom One Dark
+import "highlight.js/styles/atom-one-dark.css";
+
+// Tokyo Night Dark
+import "highlight.js/styles/tokyo-night-dark.css";
+
+// GitHub Dark
+import "highlight.js/styles/github-dark.css";
+```
+
+#### Option 2: Customize CSS Token Variables
+
+You can customize syntax highlighting tokens with CSS variables:
+
+```css
+:root {
+  --vats-code-bg: hsl(var(--muted) / 0.35);
+  --vats-code-border: hsl(var(--border));
+  --vats-code-text: hsl(var(--foreground));
+  --hljs-keyword: #2563eb;
+  --hljs-string: #16a34a;
+  --hljs-number: #d97706;
+  --hljs-comment: #6b7280;
 }
 
-pre code {
-  background: none;
-  color: inherit;
-  font-size: 0.875rem;
-  padding: 0;
-}
-
-.hljs-keyword {
-  color: #70cff8;
-}
-
-.hljs-string {
-  color: #b9f18d;
-}
-
-.hljs-number {
-  color: #fbbc88;
-}
-
-.hljs-comment {
-  color: #6b7280;
-  font-style: italic;
+.dark {
+  --vats-code-bg: hsl(var(--muted) / 0.25);
+  --vats-code-border: hsl(var(--border));
+  --vats-code-text: hsl(var(--foreground));
+  --hljs-keyword: #60a5fa;
+  --hljs-string: #4ade80;
+  --hljs-number: #fbbf24;
+  --hljs-comment: #71717a;
 }
 ```
 

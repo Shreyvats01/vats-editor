@@ -198,3 +198,113 @@ span[style] > strong {
 mark[style] > strong {
   color: inherit;
 }
+
+/* CodeBlock styling and adaptive syntax highlighting variables */
+:root {
+  --vats-code-bg: hsl(var(--muted) / 0.35);
+  --vats-code-border: hsl(var(--border));
+  --vats-code-text: hsl(var(--foreground));
+  --vats-code-font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Default syntax highlighting tokens (Light Mode fallback) */
+  --hljs-comment: #6b7280;
+  --hljs-quote: #6b7280;
+  --hljs-variable: #e11d48;
+  --hljs-template-variable: #e11d48;
+  --hljs-attribute: #e11d48;
+  --hljs-tag: #2563eb;
+  --hljs-name: #2563eb;
+  --hljs-regexp: #059669;
+  --hljs-link: #2563eb;
+  --hljs-selector-id: #7c3aed;
+  --hljs-selector-class: #7c3aed;
+  --hljs-number: #d97706;
+  --hljs-meta: #4b5563;
+  --hljs-built_in: #0891b2;
+  --hljs-builtin-name: #0891b2;
+  --hljs-literal: #d97706;
+  --hljs-type: #7c3aed;
+  --hljs-params: #374151;
+  --hljs-string: #16a34a;
+  --hljs-symbol: #16a34a;
+  --hljs-bullet: #16a34a;
+  --hljs-title: #7c3aed;
+  --hljs-section: #7c3aed;
+  --hljs-keyword: #2563eb;
+  --hljs-selector-tag: #2563eb;
+  --hljs-operator: #4b5563;
+}
+
+.dark {
+  --vats-code-bg: hsl(var(--muted) / 0.25);
+  --vats-code-border: hsl(var(--border));
+  --vats-code-text: hsl(var(--foreground));
+
+  /* Default syntax highlighting tokens (Dark Mode fallback) */
+  --hljs-comment: #71717a;
+  --hljs-quote: #71717a;
+  --hljs-variable: #f87171;
+  --hljs-template-variable: #f87171;
+  --hljs-attribute: #f87171;
+  --hljs-tag: #60a5fa;
+  --hljs-name: #60a5fa;
+  --hljs-regexp: #34d399;
+  --hljs-link: #60a5fa;
+  --hljs-selector-id: #c084fc;
+  --hljs-selector-class: #c084fc;
+  --hljs-number: #fbbf24;
+  --hljs-meta: #9ca3af;
+  --hljs-built_in: #38bdf8;
+  --hljs-builtin-name: #38bdf8;
+  --hljs-literal: #fbbf24;
+  --hljs-type: #c084fc;
+  --hljs-params: #e4e4e7;
+  --hljs-string: #4ade80;
+  --hljs-symbol: #4ade80;
+  --hljs-bullet: #4ade80;
+  --hljs-title: #c084fc;
+  --hljs-section: #c084fc;
+  --hljs-keyword: #60a5fa;
+  --hljs-selector-tag: #60a5fa;
+  --hljs-operator: #9ca3af;
+}
+
+.vats-code-block {
+  position: relative;
+  border-radius: 0.5rem;
+  border: 1px solid var(--vats-code-border);
+  background-color: var(--vats-code-bg);
+  font-family: var(--vats-code-font);
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.vats-code-block-controls {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.vats-code-block:hover .vats-code-block-controls,
+.vats-code-block:focus-within .vats-code-block-controls {
+  opacity: 1;
+}
+
+.vats-code-block pre {
+  margin: 0;
+  padding: 1rem 1.25rem;
+  overflow-x: auto;
+  font-family: inherit;
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--vats-code-text);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+}
+
+.vats-code-block code {
+  background: transparent;
+  color: inherit;
+  font-size: inherit;
+  padding: 0;
+  border: none;
+}

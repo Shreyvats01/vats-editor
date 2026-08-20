@@ -173,19 +173,18 @@ const youtube = Youtube.configure({
 
 ---
 
-### `CodeBlockLowlight`
+### `CodeBlock`
 
-Integrates Lowlight syntax highlighting with highlight.js language grammars.
+Provides interactive code snippets with syntax highlighting, Notion/Medium-style floating hover controls, `Tab` and `Shift-Tab` multi-line indentation, 1-click copy, and built-in code formatting.
 
 ```tsx
-import { CodeBlockLowlight } from "@vats-editor/core";
+import { CodeBlock } from "@vats-editor/core";
 import { common, createLowlight } from "lowlight";
 
-const codeBlock = CodeBlockLowlight.configure({
+const codeBlock = CodeBlock.configure({
   lowlight: createLowlight(common),
-  HTMLAttributes: {
-    class: "rounded-md bg-zinc-950 p-4 text-zinc-50 font-mono text-sm",
-  },
+  enableCopy: true,
+  enableFormat: true,
 });
 ```
 

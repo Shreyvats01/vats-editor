@@ -21,6 +21,11 @@ import CharacterCount from "@tiptap/extension-character-count";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import Youtube from "@tiptap/extension-youtube";
 import GlobalDragHandle from "tiptap-extension-global-drag-handle";
+import {
+  CodeBlock,
+  DEFAULT_LANGUAGES,
+  THEME_PRESETS,
+} from "./code-block";
 
 const PlaceholderExtension = Placeholder.configure({
   placeholder: ({ node }) => {
@@ -62,7 +67,10 @@ const Horizontal = HorizontalRule.extend({
 
 export * from "./slash-command";
 export {
+  CodeBlock,
   CodeBlockLowlight,
+  DEFAULT_LANGUAGES,
+  THEME_PRESETS,
   Horizontal as HorizontalRule,
   ImageResizer,
   InputRule,
@@ -87,3 +95,10 @@ export {
 };
 export type { TwitterOptions } from "./twitter";
 export type { MathematicsOptions } from "./mathematics";
+export type { CodeBlockOptions, CodeLanguage, CodeTheme } from "./code-block";
+export {
+  ReactNodeViewRenderer,
+  NodeViewWrapper,
+  NodeViewContent,
+  type NodeViewProps,
+} from "@tiptap/react";

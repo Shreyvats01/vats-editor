@@ -300,22 +300,63 @@ export const dragHandleExtension = GlobalDragHandle.configure({
 
 ---
 
-## CodeBlockLowlight
+## CodeBlock
 
-`CodeBlockLowlight` integrates syntax highlighting for code blocks using `lowlight` and highlight.js language grammars.
+`CodeBlock` provides interactive code snippets with syntax highlighting, Notion/Medium-style floating hover controls, `Tab` and `Shift-Tab` multi-line indentation, 1-click copy, and built-in code formatting.
+
+### Features
+
+- **Floating Hover Controls**: Subtle language selector, format button, and copy button that fade in on hover or focus.
+- **Keyboard Navigation**: `Tab` indents cursor or selection by 2 spaces; `Shift-Tab` outdents.
+- **Built-in Formatting**: Automatic structure cleanup for JSON, JS/TS, HTML, CSS, SQL, Python, and Markdown.
+- **Pluggable Syntax Themes**: Works seamlessly with lightweight `highlight.js` stylesheets (such as Atom One Dark, Tokyo Night, GitHub Dark) and custom CSS variables.
 
 ### Example Configuration
 
 ```tsx
-import { CodeBlockLowlight } from "@vats-editor/core";
+import { CodeBlock } from "@vats-editor/core";
 import { common, createLowlight } from "lowlight";
 
-const lowlight = createLowlight(common);
+export const customCodeBlock = CodeBlock.configure({
+  lowlight: createLowlight(common),
+  enableCopy: true,
+  enableFormat: true,
+});
+```
 
-export const codeBlockExtension = CodeBlockLowlight.configure({
-  lowlight,
-  HTMLAttributes: {
-    class: "rounded-md bg-neutral-900 p-4 font-mono text-sm text-neutral-100",
+### Syntax Highlighting & Theme Styling
+
+To style syntax highlighting tokens, you can either import a lightweight stylesheet from `highlight.js` or customize CSS variables in your global stylesheet:
+
+```tsx
+// Option 1: Import a lightweight theme stylesheet in your root layout
+import "highlight.js/styles/atom-one-dark.css";
+// or "highlight.js/styles/tokyo-night-dark.css"
+// or "highlight.js/styles/github-dark.css"
+```
+
+```css
+/* Option 2: Customize syntax token variables directly */
+:root {
+  --vats-code-bg: hsl(var(--muted) / 0.35);
+  --vats-code-border: hsl(var(--border));
+  --vats-code-text: hsl(var(--foreground));
+  --hljs-keyword: #2563eb;
+  --hljs-string: #16a34a;
+  --hljs-number: #d97706;
+  --hljs-comment: #6b7280;
+}
+```
+
+### Custom Formatter Example
+
+```tsx
+import { CodeBlock } from "@vats-editor/core";
+
+export const customCodeBlock = CodeBlock.configure({
+  formatCode: async (code, language) => {
+    // Connect custom Prettier or Biome formatter
+    return code;
   },
 });
 ```

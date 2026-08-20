@@ -200,3 +200,50 @@ The slash command menu uses `cmdk` internally. You can target `aria-selected` an
   </EditorCommandList>
 </EditorCommand>
 ```
+
+---
+
+## 6. Code Block Themes & Syntax Highlighting
+
+Vats Editor code blocks support syntax highlighting via `lowlight` and standard `highlight.js` stylesheets, as well as custom CSS variables.
+
+### Option 1: Import a Lightweight Theme Stylesheet
+
+Import any lightweight `highlight.js` theme in your application:
+
+```ts
+// Atom One Dark (~1 KB)
+import "highlight.js/styles/atom-one-dark.css";
+
+// Tokyo Night Dark (~1 KB)
+import "highlight.js/styles/tokyo-night-dark.css";
+
+// GitHub Dark (~1 KB)
+import "highlight.js/styles/github-dark.css";
+```
+
+### Option 2: Custom CSS Variable Overrides
+
+Customize syntax tokens in your global CSS (`globals.css`):
+
+```css
+:root {
+  --vats-code-bg: hsl(var(--muted) / 0.35);
+  --vats-code-border: hsl(var(--border));
+  --vats-code-text: hsl(var(--foreground));
+  --hljs-keyword: #2563eb;
+  --hljs-string: #16a34a;
+  --hljs-number: #d97706;
+  --hljs-comment: #6b7280;
+}
+
+.dark {
+  --vats-code-bg: hsl(var(--muted) / 0.25);
+  --vats-code-border: hsl(var(--border));
+  --vats-code-text: hsl(var(--foreground));
+  --hljs-keyword: #60a5fa;
+  --hljs-string: #4ade80;
+  --hljs-number: #fbbf24;
+  --hljs-comment: #71717a;
+}
+```

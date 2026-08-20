@@ -73,3 +73,16 @@ vats-editor/
   - *Webpack / Rollup manual configuration*: Rejected in favor of `tsup` for faster builds and zero-config `.d.ts` generation.
   - *npm / yarn workspaces*: Rejected due to slower dependency resolution and weaker workspace isolation compared to `pnpm`.
 - **Consequences**: Fast build cycles with Turborepo caching, strict typecheck gates across all workspaces, and frictionless release automation.
+
+---
+
+### ADR-005: Lightweight CodeBlock Syntax Highlighting and Package Consolidation
+
+- **Status**: Accepted
+- **Context**: The editor required an efficient way to style code block syntax highlighting across themes without the package management overhead of maintaining a separate static CSS package.
+- **Decision**: Remove `@vats-editor/style` and adopt standard lightweight `highlight.js` stylesheets (~1 KB each) combined with adaptive CSS custom properties in `prosemirror.css` for zero-config theming and granular custom overrides.
+- **Alternatives Considered**:
+  - *Bundling themes in `@vats-editor/core`*: Rejected to keep the core package lightweight and tree-shakeable.
+  - *Maintaining `@vats-editor/style` package*: Rejected due to redundant publishing and versioning overhead for static CSS.
+- **Consequences**: Cleaner package dependency graph, zero extra package maintenance, and instant support for over 100 community `highlight.js` themes.
+
