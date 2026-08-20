@@ -152,5 +152,5 @@ The following specialized local skills are available in `.gemini/skills/`:
 | Skill | Path | Description |
 | :--- | :--- | :--- |
 | **`documentation-and-wiki-maintenance`** | [`.gemini/skills/documentation-and-wiki-maintenance/SKILL.md`](file:///home/shrey/Projects/novel/.gemini/skills/documentation-and-wiki-maintenance/SKILL.md) | Authoring, updating, and syncing docs, ADRs, and GitHub Wiki with decision rubrics and quality gates. |
-| **`git-push-playbook`** | [`.gemini/skills/git-push-playbook/SKILL.md`](file:///home/shrey/Projects/novel/.gemini/skills/git-push-playbook/SKILL.md) | Pre-push decision rubric, atomic commit standards, and emergency rollback protocols. |
-| **`git-workflow-and-versioning`** | [`.gemini/skills/git-workflow-and-versioning/SKILL.md`](file:///home/shrey/Projects/novel/.gemini/skills/git-workflow-and-versioning/SKILL.md) | Branching models, atomic commit sizing, and SemVer release management. |
+| **`git-workflow-and-versioning`** | [`.gemini/skills/git-workflow-and-versioning/SKILL.md`](file:///home/shrey/Projects/novel/.gemini/skills/git-workflow-and-versioning/SKILL.md) | Master guide for git workflow, atomic commits, verification gates, secret hygiene, and emergency rollbacks. |
+| **`library-development-and-publishing`** | [`.gemini/skills/library-development-and-publishing/SKILL.md`](file:///home/shrey/Projects/novel/.gemini/skills/library-development-and-publishing/SKILL.md) | Developing, bundling with tsup, versioning via Changesets, and publishing `@vats-editor/core` to npm. |
